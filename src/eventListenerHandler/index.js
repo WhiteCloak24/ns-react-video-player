@@ -15,7 +15,7 @@ export function loadedMetadataHandler(e) {
 }
 export function getTotalTime() {
   const videoElm = document.getElementById("video-element");
-  return videoElm?.duration || 0
+  return videoElm?.duration || 0;
 }
 export function progressHandler(e) {
   setCurrentBufferPos(e?.target);
@@ -58,6 +58,18 @@ const setCurrentThumbPos = (videoElm) => {
   const seekerElm = document.getElementById("video-seeker");
   const ratio = videoElm?.currentTime / videoElm?.duration;
   thumbElm.style.width = `${seekerElm?.offsetWidth * ratio}px`;
+};
+export const updateCurrentThumbPos = (videoElm, time = 0) => {
+  const thumbElm = document.getElementById("video-thumb");
+  const seekerElm = document.getElementById("video-seeker");
+  const ratio = time / videoElm?.duration;
+  videoElm.currentTime = time
+  thumbElm.style.width = `${seekerElm?.offsetWidth * ratio}px`;
+  const elm = document.getElementById("current-time");
+  if (elm) {
+    elm.innerText = secondsTohhmmss(time || 0);
+  }
+  
 };
 const setCurrentBufferPos = (videoElm) => {
   const thumbElm = document.getElementById("video-buffering");
