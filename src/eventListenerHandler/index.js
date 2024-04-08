@@ -13,8 +13,12 @@ export function loadedMetadataHandler(e) {
     totalTimeElm.innerText = secondsTohhmmss(e?.target?.duration || 0);
   }
 }
+export function getTotalTime() {
+  const videoElm = document.getElementById("video-element");
+  return videoElm?.duration || 0
+}
 export function progressHandler(e) {
-  setCurrentBufferPos(e?.target)
+  setCurrentBufferPos(e?.target);
 }
 export function playVideoHandler(e) {
   const elm = document.getElementById("current-time");
